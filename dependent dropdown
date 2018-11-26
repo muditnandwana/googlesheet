@@ -1,0 +1,28 @@
+//MuditN QC
+
+function onEdit()
+{
+  
+  var ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var datass = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Database") //Database sheet
+  var activeCell = ss.getActiveCell(); //for dependent dropdown
+  
+  if(activeCell.getColumn() == 4 && activeCell.getRow() > 1 && ss.getSheetName() == "Details") 
+  {
+    activeCell.offset(0, 1).clearContent().clearDataValidations();  //to clear old content
+    
+    var makes = datass.getRange(1, 1, 1, datass.getLastColumn()).getValues(); //for future expansion of database
+   
+    var makeIndex = makes[0].indexOf(activeCell.getValue()) + 1;
+    
+    if(makeIndex != 0)
+    {
+      
+      var validationRange = datass.getRange(2, makeIndex, datass.getLastRow())
+      var validationRule = SpreadsheetApp.newDataValidation().requireValueInRange(validationRange).build() 
+      activeCell.offset(0, 1).setDataValidation(validationRule);
+      
+    }
+    
+  }
+}
