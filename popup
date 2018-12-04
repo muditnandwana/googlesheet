@@ -1,0 +1,12 @@
+//MuditN QC
+function onOpen() 
+{
+ 
+  var ui = SpreadsheetApp.getUi(); 
+  ui.a
+  ui.alert
+  (
+     'You can use filter on client to find contact details\nFor help contact qcsupport@quickcap.net'
+  );
+}
+
